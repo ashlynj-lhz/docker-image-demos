@@ -1,3 +1,35 @@
+## Demo #1: Building the image
+
+```
+docker build -t ajeetraina/reactapp .
+```
+
+## Demo #2: Using Multi-Stage Build
+
+```
+docker build -t ajeeetraina/reactapp-multi . -f Dockerfile.multi
+```
+
+## Demo #3: Using Healtcheck
+
+```
+docker build -t ajeeetraina/reactapp-healthcheck . -f Dockerfile.healthcheck
+```
+
+## Verify
+
+```
+docker ps
+CONTAINER ID   IMAGE                          COMMAND                  CREATED          STATUS                             PORTS                    NAMES
+90a78c8d12ab   ajeetraina/react-healthcheck   "docker-entrypoint.s…"   13 seconds ago   Up 13 seconds (health: starting)   0.0.0.0:3000->3000/tcp   sweet_lumiere
+```
+
+
+
+
+
+
+
 ## React App
 
 This is basic React application display "Hello World" on the screen. This application is used in the Docker Blog to demonstrate to improve the security of Docker images of a Node.js application.
