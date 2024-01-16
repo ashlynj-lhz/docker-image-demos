@@ -3,11 +3,11 @@
 ## Run a Ubuntu container
 
 ```
-docker run --dit ubuntu /bin/bash
+docker run -itd ubuntu /bin/bash
 ```
 
 ```
-docker exec -it containerid bash
+docker exec -it containerid 
 ```
 
 ## Install Nodejs
