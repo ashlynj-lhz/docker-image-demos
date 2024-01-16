@@ -31,6 +31,17 @@ docker commit <container-id> custom-node
 docker run  custom-node node --version
 ```
 
+## With Dockerfile
+
+```
+docker build -t ajeetraina/custom-node-2 .
+```
+
+## Verify the Node version
+
+```
+docker exec -it <container-id> bash
+```
 
 
 
