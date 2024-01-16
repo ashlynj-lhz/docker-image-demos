@@ -28,14 +28,9 @@ docker commit <container-id> custom-node
 ## Run a new container
 
 ```
-docker run -ti custom-node
+docker run  custom-node node --version
 ```
 
-## Verify if Node is installed
-
-```
-node --version
-```
 
 
 
