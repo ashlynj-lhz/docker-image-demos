@@ -7,7 +7,7 @@ docker run -itd ubuntu /bin/bash
 ```
 
 ```
-docker exec -it containerid 
+docker exec -it containerid bash
 ```
 
 ## Install Nodejs
