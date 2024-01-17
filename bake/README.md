@@ -46,4 +46,51 @@ Save it as bake.hcl
  docker buildx bake --file bake.hcl
 ```
 
-## 
+## Verify if the image is built or not
+
+```
+ => [internal] load build context                                                        0.1s
+ => => transferring context: 745.96kB                                                      0.1s
+ => [2/5] WORKDIR /app                                                              0.2s
+ => [3/5] COPY package*.json ./                                                         0.0s
+ => [4/5] RUN npm install                                                            8.0s
+ => [5/5] COPY . .                                                                0.2s
+WARNING: No output specified with docker-container driver. Build result will only remain in the build cache. To push result image into registry use --push or to load image into docker use --load
+
+View build details: docker-desktop://dashboard/build/buildkit-container/buildkit-container0/k2edxxqs8ad2lq4psqopa7i7n
+```
+
+
+## Loading to the Docker
+
+```
+ docker buildx bake --file bake.hcl --load
+```
+
+
+```
+ => [5/5] COPY . .                                                                                                                               0.2s
+ => exporting to docker image format                                                                                                            24.3s
+ => => exporting layers                                                                                                                          7.5s
+ => => exporting manifest sha256:9c7b0cd4ccfbbde4aed2dddd7d643c198ee507373757a587a8ee5bf51ed77f68                                                0.0s
+ => => exporting config sha256:b56bc55259bb0c65ae41a3ab6233ff3e6a0301689682bbe45323f206a2b8da3a                                                  0.0s
+ => => sending tarball                                                                                                                          16.8s
+ => importing to docker                                                                                                                         10.3s
+ => => loading layer d6119018349b 93B / 93B                                                                                                     10.3s
+ => => loading layer 374c3fa79fa8 32.77kB / 157.95kB                                                                                            10.2s
+ => => loading layer cc46f83f1d38 95.81MB / 95.97MB                                                                                             10.1s
+ => => loading layer 8370f49bfa5a 32.77kB / 184.32kB
+```
+
+## Tag the image
+
+```
+docker tag b56bc55259bb node-app:latest
+```
+
+ajeetsraina  react  ➜ ( main)   21.4.0  ♥ 17:51  docker image ls
+REPOSITORY                     TAG               IMAGE ID       CREATED         SIZE
+node-app                       latest            b56bc55259bb   2 minutes ago   1.4GB
+```
+
+
