@@ -80,3 +80,41 @@ CMD ["nginx", "-g", "daemon off;"]
 Firstly we build an image with the default Dockerfile with the tag `react-app:` and then we build the image with the multi-stage Dockerfile with the tag `react-app-multi-stage:`. We can see that the image without the multi-stage build is 1.7GB and the image with the multi-stage build is 200MB. 
 
 <img width="1512" alt="Screenshot 2024-01-14 at 7 20 54 PM" src="https://github.com/Pradumnasaraf/blog-react-app/assets/51878265/0aa02a8f-6f1e-445d-a093-34758c01f67e">
+
+
+## Build Cache
+
+## Clone the repo
+
+```
+ git clone https://github.com/ajeetraina/docker-image-intro
+ cd docker-image-intro
+ docker build -t ajeetraina/test-cache .
+```
+
+## Re-build the Image without any change
+
+```
+..
+ => CACHED [2/5] WORKDIR /app                                                                                                                    0.0s
+ => CACHED [3/5] COPY package*.json ./                                                                                                           0.0s
+ => CACHED [4/5] RUN npm install
+```
+
+## Let's make a change in package.json 
+
+Change "react": "^18.3.0" to "react": "^18.2.0"
+
+## Re-build the Image
+
+```
+  docker build -t ajeetraina/test-cache .
+```
+
+## Result
+
+ ```
+=> CACHED [2/5] WORKDIR /app                                                                                                                    0.0s
+ => [3/5] COPY package*.json ./                                                                                                                  0.0s
+ => [4/5] RUN npm install
+```
