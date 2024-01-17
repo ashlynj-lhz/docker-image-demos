@@ -11,6 +11,18 @@ Docker Build with Bake is a feature within BuildKit that allows you to define an
 - Flexibility: Customize build processes using variables, conditional logic, and external scripts.
 - Integration: Combine Bake with other BuildKit features like build secrets and image signing.
 
+
+## What is HCL (HashiCorp Configuration Language)?
+
+It's a declarative language used to define build configurations for Bake, a feature within BuildKit that allows you to manage and orchestrate multiple Docker image builds through a configuration file.
+
+Benefits of using HCL for Docker bake:
+
+Clarity and Organization: HCL provides a structured and readable way to define build targets, dependencies, and build instructions, making your configuration easier to understand and maintain.
+Flexibility: HCL allows you to leverage various functionalities like variables, conditional logic, and external scripts to tailor your build processes according to specific needs.
+Reusability: You can define reusable components and share them across different projects or bake files.
+Integration: HCL integrates well with other BuildKit features like multi-arch builds and build secrets.
+
 ```
  git clone https://github.com/ajeetraina/docker-image-intro
  cd docker-image-intro/react/
