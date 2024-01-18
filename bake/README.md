@@ -76,6 +76,7 @@ View build details: docker-desktop://dashboard/build/buildkit-container/buildkit
 ```
 docker tag b56bc55259bb node-app:latest
 ```
+
 ```
 ajeetsraina  react  ➜ ( main)   21.4.0  ♥ 17:51  docker image ls
 REPOSITORY                     TAG               IMAGE ID       CREATED         SIZE
@@ -88,7 +89,7 @@ The developer appears to be asking about creating a `bake.hcl` file, which is as
 
 Since the question is Docker-related and pertains to this specific project, I will provide a sample `bake.hcl` file based on the provided Dockerfiles. This file will define targets for building these Dockerfiles using `docker buildx bake`.
 
-```hcl
+```
 group "default" {
   targets = ["app", "app-healthcheck", "app-multi"]
 }
