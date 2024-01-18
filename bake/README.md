@@ -76,10 +76,42 @@ View build details: docker-desktop://dashboard/build/buildkit-container/buildkit
 ```
 docker tag b56bc55259bb node-app:latest
 ```
-
+```
 ajeetsraina  react  ➜ ( main)   21.4.0  ♥ 17:51  docker image ls
 REPOSITORY                     TAG               IMAGE ID       CREATED         SIZE
 node-app                       latest            b56bc55259bb   2 minutes ago   1.4GB
 ```
+
+## Ceated by Docker AI
+
+The developer appears to be asking about creating a `bake.hcl` file, which is associated with the Docker Buildx `bake` command—a feature Docker provides to make it easier to manage and build multiple images in a declarative manner using an HCL (HashiCorp Configuration Language) file.
+
+Since the question is Docker-related and pertains to this specific project, I will provide a sample `bake.hcl` file based on the provided Dockerfiles. This file will define targets for building these Dockerfiles using `docker buildx bake`.
+
+```hcl
+group "default" {
+  targets = ["app", "app-healthcheck", "app-multi"]
+}
+
+target "app" {
+  context = "."
+  dockerfile = "Dockerfile"
+  tags = ["myapp:latest"]
+}
+
+target "app-healthcheck" {
+  context = "."
+  dockerfile = "Dockerfile.healthcheck"
+  tags = ["myapp:healthcheck-latest"]
+}
+
+target "app-multi" {
+  context = "."
+  dockerfile = "Dockerfile.multi"
+  tags = ["myapp:multi-latest"]
+}
+```
+
+With this `bake.hcl` file, you can build all the Docker images defined in the targets by simply running `docker buildx bake` or build a specific image by running `docker buildx bake app`, `docker buildx bake app-healthcheck`, or `docker buildx bake app-multi`.
 
 
