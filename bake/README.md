@@ -26,7 +26,7 @@ Integration: HCL integrates well with other BuildKit features like multi-arch bu
 ```
  git clone https://github.com/ajeetraina/docker-image-intro
  cd docker-image-intro/react/
- ```9\\\\0
+ ```
 
 
 ## Build the images using docker buildx bake:
