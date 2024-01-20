@@ -1,12 +1,18 @@
 pipeline {
     agent any
     environment {
-        registryCredential = 'ecr:ap-south-1:awscreds'
-        appRegistry = "public.ecr.aws/o7b4l2p4/node-app"
-        RegistryURL = "https://public.ecr.aws/o7b4l2p4/"
+        REPOSITORY_URI = '601765242740.dkr.ecr.ap-south-1.amazonaws.com/node-app'
     }
     stages {
-        stage('Checkout') {
+        stage('Logging into AWS ECR') {
+            steps {
+                script {
+                    sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 601765242740.dkr.ecr.ap-south-1.amazonaws.com'
+                }
+            }
+        }
+
+        stage('Checkout ') {
             steps {
 		checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'gh-lhz', url: 'https://github.com/ashlynj-lhz/docker-image-demos.git']])
             }
@@ -15,7 +21,7 @@ pipeline {
         stage('Build App Image') {
             steps {
                 script {
-                    dockerImage = docker.build("${appRegistry}:${BUILD_NUMBER}", ".")
+                    dockerImage = docker.build("${REPOSITORY_URI}:${BUILD_NUMBER}", ".")
                 }
             }
         }
@@ -23,9 +29,7 @@ pipeline {
         stage('Upload App Image'){
             steps {
                 script {
-                    docker.withRegistry(RegistryURL, registryCredential) {
-                        dockerImage.push("${BUILD_NUMBER}")
-                        dockerImage.push('latest')
+                    sh """docker push 601765242740.dkr.ecr.ap-south-1.amazonaws.com/node-app:${BUILD_NUMBER}"""
                     }
                 }
             }
