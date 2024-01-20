@@ -1,5 +1,5 @@
-FROM ubuntu
+FROM node:21-alpine3.18
 WORKDIR /usr/local/app
-RUN apt update && apt install -y nodejs
 COPY index.js .
+EXPOSE 3000
 CMD ["node", "index.js"]
