@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/ashlynj-lhz/docker-image-demos.git'
+		checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'gh-lhz', url: 'https://github.com/ashlynj-lhz/docker-image-demos.git']])
             }
         }
 
