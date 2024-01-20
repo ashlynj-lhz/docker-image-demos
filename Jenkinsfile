@@ -30,7 +30,6 @@ pipeline {
             steps {
                 script {
                     sh """docker push 601765242740.dkr.ecr.ap-south-1.amazonaws.com/node-app:${BUILD_NUMBER}"""
-                    }
                 }
             }
         }
