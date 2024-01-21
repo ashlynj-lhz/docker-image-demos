@@ -40,7 +40,7 @@ pipeline {
 	stage('Deploy to ECS') {
             steps {
                 script {
-                    sh """aws ecs update-service --cluster ${ECS_CLUSTER} --service ${ECS_SERVICE_NAME} --force-new-deployment"""
+                    sh """aws ecs update-service --cluster ${ECS_CLUSTER} --service ${ECS_SERVICE_NAME} --force-new-deployment --region ap-south-1"""
                 }
             }
         }
