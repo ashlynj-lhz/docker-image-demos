@@ -23,7 +23,7 @@ pipeline {
         stage('Build App Image') {
             steps {
                 script {
-                    dockerImage = docker.build("${REPOSITORY_URI}:${BUILD_NUMBER}", ".")
+                    dockerImage = docker.build("${REPOSITORY_URI}:latest", ".")
                 }
             }
         }
@@ -31,7 +31,7 @@ pipeline {
         stage('Upload App Image'){
             steps {
                 script {
-                    sh """docker push 601765242740.dkr.ecr.ap-south-1.amazonaws.com/node-app:${BUILD_NUMBER}"""
+                    sh """docker push ${REPOSITORY_URI}:latest"""
                 }
             }
         }
