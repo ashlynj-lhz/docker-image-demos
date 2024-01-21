@@ -4,6 +4,7 @@ pipeline {
         REPOSITORY_URI = '601765242740.dkr.ecr.ap-south-1.amazonaws.com/node-app'
 	ECS_CLUSTER = 'node-cluster'
 	ECS_SERVICE_NAME = 'node-svc'
+	AWS_DEFAULT_REGION = 'ap-south-1'
     }
     stages {
         stage('Logging into AWS ECR') {
@@ -40,7 +41,9 @@ pipeline {
 	stage('Deploy to ECS') {
             steps {
                 script {
-                    sh """aws ecs update-service --cluster ${ECS_CLUSTER} --service ${ECS_SERVICE_NAME} --force-new-deployment --region ap-south-1"""
+		    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'awscreds', accessKeyVariable: 'AWS_ACCESS_KEY_ID', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) {
+                        sh """aws ecs update-service --cluster ${ECS_CLUSTER} --service ${ECS_SERVICE_NAME} --force-new-deployment --region 1 ${AWS_DEFAULT_REGION}"""
+                    }
                 }
             }
         }
