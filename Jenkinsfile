@@ -2,6 +2,8 @@ pipeline {
     agent any
     environment {
         REPOSITORY_URI = '601765242740.dkr.ecr.ap-south-1.amazonaws.com/node-app'
+	ECS_CLUSTER = 'node-cluster'
+	ECS_SERVICE_NAME = 'node-svc'
     }
     stages {
         stage('Logging into AWS ECR') {
@@ -32,6 +34,13 @@ pipeline {
             steps {
                 script {
                     sh """docker push ${REPOSITORY_URI}:latest"""
+                }
+            }
+        }
+	stage('Deploy to ECS') {
+            steps {
+                script {
+                    sh """aws ecs update-service --cluster ${ECS_CLUSTER} --service ${ECS_SERVICE_NAME} --force-new-deployment"""
                 }
             }
         }
