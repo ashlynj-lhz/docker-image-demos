@@ -6,7 +6,7 @@ const http = require('http');
 // Create a simple HTTP server that responds with "Hello, Docker!" for all requests
 const server = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Workshop #41! Success!\n');
+  res.end('Workshop #41 is deployed! \n');
 });
 
 // Set the server to listen on port 3000
